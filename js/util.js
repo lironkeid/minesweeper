@@ -1,16 +1,5 @@
 'use strict'
 
-function createMat(ROWS, COLS) {
-    const mat = []
-    for (var i = 0; i < ROWS; i++) {
-        const row = []
-        for (var j = 0; j < COLS; j++) {
-            row.push('')
-        }
-        mat.push(row)
-    }
-    return mat
-}
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -19,11 +8,11 @@ function getRandomInt(min, max) {
   }
 
   function getRandomEmptyCell() {
-    const emptyCells =[]
-    for (var i =0; i < gBoard.length; i++){
+    const emptyCells = []
+    for (var i=0; i < gBoard.length; i++){
         for(var j = 0; j < gBoard[i].length; j++){
-            const cell = gBoard[i][j]
-            if(cell === EMPTY) emptyCells.push({i,j})
+            const cell = gBoard[i][j].isMine
+            if(cell === 'EMPTY') emptyCells.push({i,j})
         }
     }
 
@@ -31,4 +20,8 @@ function getRandomInt(min, max) {
 
     const randIdx = getRandomInt(0, emptyCells.length)
     return emptyCells[randIdx]
+}
+
+function getClassName(location) {
+    return 'cell-' + location.i + '-' + location.j;
 }
